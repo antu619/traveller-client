@@ -6,6 +6,7 @@ import Register from "../pages/Authentication/Register";
 import PrivateRoute from "./PrivateRoute";
 import DashboardLayout from "../layouts/DashboardLayout";
 import Dashboard from "../pages/Dashboard/Dashboard";
+import UploadPost from "../pages/Dashboard/UploadPost";
 
 
 const router = createBrowserRouter([
@@ -18,11 +19,11 @@ const router = createBrowserRouter([
                 element: <Home/>
             },
             {
-                path: '/login',
+                path: 'login',
                 element: <Login/>
             },
             {
-                path: '/register',
+                path: 'register',
                 element: <Register/>
             },
         ]
@@ -34,7 +35,11 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard',
                 element: <Dashboard/>
-            }
+            },
+            {
+                path: 'upload-post',
+                element: <UploadPost/>
+            },
         ]
     }
 ])
