@@ -1,12 +1,18 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import GoogleLogin from "../../components/GoogleLogin";
 
 const Login = () => {
   const [error, setError] = useState();
   // context
-  const { logIn } = useContext(AuthContext);
+  const { user, logIn } = useContext(AuthContext);
+
+  // Redirect location
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location?.state || "/";
 
   // Handle Login
   const handleLogin = (e) => {
@@ -20,6 +26,13 @@ const Login = () => {
       .then((result) => console.log(result))
       .catch((error) => setError(error));
   };
+
+  // redirect after login
+  useEffect( () => {
+    if(user){
+      navigate(from, {replace: true})
+    }
+  }, [from, navigate, user])
 
   return (
     <div className="hero my-10">

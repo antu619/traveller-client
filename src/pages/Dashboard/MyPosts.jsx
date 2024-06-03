@@ -13,11 +13,19 @@ const MyPosts = () => {
         fetch("http://localhost:5000/posts")
         .then(res => res.json())
         .then(data => setPosts(data))
-    }, [])
+    }, []);
 
-    console.log(posts)
+    console.log(posts);
+    
+
+// handle remove
+const handleRemove = (_id) => {
+    setPosts(posts.filter((post) => post._id !== _id));
+}
+
     const usersPosts = posts.filter(post => post.email === user.email)
-    console.log(usersPosts)
+    console.log(usersPosts);
+
 
     return (
         <div className="p-5 md:p-10 lg:p-20">
@@ -26,7 +34,7 @@ const MyPosts = () => {
       </h2>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
         {
-            usersPosts?.map(post => <PostCard key={post._id} post={post} />)
+            usersPosts?.map(post => <PostCard key={post._id} post={post} handleRemove={handleRemove} />)
         }
       </div>
         </div>

@@ -1,12 +1,18 @@
-import { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
   const [error, setError] = useState();
 
   // Context
-  const { createUser } = useContext(AuthContext);
+  const { user, createUser } = useContext(AuthContext);
+
+  // redirect location
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const from = location?.state || "/";
 
   // Handle Register
   const handleRegister = (e) => {
@@ -26,6 +32,13 @@ const Register = () => {
         setError(error?.message);
       });
   };
+
+  // redirect after login
+  useEffect( () => {
+    if(user){
+      navigate(from, {replace: true})
+    }
+  }, [from, navigate, user])
 
   return (
     <div className="hero my-10">
