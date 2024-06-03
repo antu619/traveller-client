@@ -1,6 +1,13 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
 
 const Register = () => {
+  const [error, setError] = useState();
+
+  // Context
+  const { createUser } = useContext(AuthContext);
+
   // Handle Register
   const handleRegister = (e) => {
     e.preventDefault();
@@ -9,6 +16,15 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
     console.log(name, email, password);
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error.message);
+        setError(error?.message);
+      });
   };
 
   return (
@@ -67,6 +83,8 @@ const Register = () => {
                 </a>
               </label>
             </div>
+            {/* Error message */}
+            <p className="text-error">{error}</p>
             <div className="form-control mt-6">
               <input
                 className="btn btn-primary text-white"

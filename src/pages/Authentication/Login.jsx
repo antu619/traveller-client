@@ -1,17 +1,28 @@
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../providers/AuthProvider";
+import GoogleLogin from "../../components/GoogleLogin";
 
 const Login = () => {
+  const [error, setError] = useState();
+  // context
+  const { logIn } = useContext(AuthContext);
+
   // Handle Login
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password)
+    console.log(email, password);
+
+    logIn(email, password)
+      .then((result) => console.log(result))
+      .catch((error) => setError(error));
   };
 
   return (
-    <div className="hero">
+    <div className="hero my-10">
       <div className="hero-content flex-col lg:flex-row">
         <div>
           <img
@@ -54,6 +65,8 @@ const Login = () => {
                 </a>
               </label>
             </div>
+            {/* Error message */}
+            <p className="text-error">{error?.message}</p>
             <div className="form-control mt-6">
               <input
                 className="btn btn-primary text-white"
@@ -67,6 +80,7 @@ const Login = () => {
                 Register
               </Link>
             </p>
+          <GoogleLogin setError={setError} />
           </form>
         </div>
       </div>
