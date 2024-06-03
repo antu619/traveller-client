@@ -1,43 +1,49 @@
 import { useContext } from "react";
-import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { useLoaderData } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UploadPost = () => {
-    // Context
-    const {user} = useContext(AuthContext);
-    const email = user.email;
+const UpdatePost = () => {
+  const data = useLoaderData();
 
+  // Context
+  const { user } = useContext(AuthContext);
+  const email = user?.email;
+
+  // Handle Update
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.name.value;
-    const location = form.name.value;
+    const location = form.location.value;
     const imgUrl = form.imgUrl.value;
     const description = form.description.value;
 
-    const postData = { title, location, imgUrl, description, email};
-    console.log(postData);
+    const postData = { title, location, imgUrl, description, email };
 
-    // Upload post api
-    await fetch('http://localhost:5000/posts', {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(postData),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        Swal.fire({
-          title: "Good job!",
-          text: "Successfully Upload A Post!",
-          icon: "success",
+    const alert = window.confirm(
+      `Are you sure? You want to update "${data.title}`
+    );
+
+    if (alert) {
+      await fetch(`http://localhost:5000/posts/${data._id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "Application/json",
+        },
+        body: JSON.stringify(postData),
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          console.log(data);
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully Upload A Post!",
+            icon: "success",
+          });
         });
-        form.reset();
-      });
+    }
   };
-
   return (
     <div className="p-5 md:p-10 lg:p-20">
       <h2 className="text-3xl text-center font-semibold text-secondary mb-10">
@@ -48,19 +54,19 @@ const UploadPost = () => {
           <div className="form-control mb-2">
             <label className="input input-bordered flex items-center gap-2">
               Title:
-              <input type="text" name="name" className="grow" required />
+              <input type="text" name="name" className="grow" required defaultValue={data?.title} />
             </label>
           </div>
           <div className="form-control mb-2">
             <label className="input input-bordered flex items-center gap-2">
               Location:
-              <input type="text" name="location" className="grow" required />
+              <input type="text" name="location" className="grow" required defaultValue={data?.location}/>
             </label>
           </div>
           <div className="form-control mb-2">
             <label className="input input-bordered flex items-center gap-2">
               Image URL:
-              <input type="text" name="imgUrl" className="grow" required />
+              <input type="text" name="imgUrl" className="grow" required defaultValue={data?.imgUrl}/>
             </label>
           </div>
           <div className="form-control mb-2">
@@ -71,6 +77,7 @@ const UploadPost = () => {
                 name="description"
                 className="grow"
                 required
+                defaultValue={data?.description}
               ></textarea>
             </label>
           </div>
@@ -87,4 +94,4 @@ const UploadPost = () => {
   );
 };
 
-export default UploadPost;
+export default UpdatePost;
