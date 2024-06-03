@@ -10,6 +10,7 @@ import UploadPost from "../pages/Dashboard/UploadPost";
 import MyPosts from "../pages/Dashboard/MyPosts";
 import UpdatePost from "../pages/Dashboard/UpdatePost";
 import PostDetails from "../pages/PostDetails";
+import Posts from "../pages/Posts";
 
 
 const router = createBrowserRouter([
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home/>
+            },
+            {
+                path: 'posts',
+                element: <Posts/>
             },
             {
                 path: '/posts/:id',
