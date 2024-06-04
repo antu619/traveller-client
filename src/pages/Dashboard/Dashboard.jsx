@@ -12,7 +12,7 @@ const Dashboard = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("https://traveller-server-ten.vercel.app/posts")
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
@@ -24,7 +24,7 @@ const Dashboard = () => {
   console.log(usersPosts);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/users/${user?.email}`, {
+    fetch(`https://traveller-server-ten.vercel.app/users/${user?.email}`, {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }

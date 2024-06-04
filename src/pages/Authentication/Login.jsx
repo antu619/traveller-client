@@ -7,7 +7,7 @@ import useToken from "../../hooks/useToken";
 const Login = () => {
   const [error, setError] = useState();
   // context
-  const { logIn } = useContext(AuthContext);
+  const { user, logIn } = useContext(AuthContext);
 
   const [loginUser, setLoginUser] = useState('');
   const [token] = useToken(loginUser);
@@ -36,10 +36,10 @@ const Login = () => {
 
   // redirect after login
     useEffect( () => {
-    if(token){
+    if(token || user){
       navigate(from, {replace: true})
     }
-  }, [from, navigate, token])
+  }, [from, navigate, token, user])
 
 
   return (

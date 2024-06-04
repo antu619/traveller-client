@@ -20,7 +20,7 @@ const UploadPost = () => {
     console.log(postData);
 
     // Upload post api
-    await fetch('http://localhost:5000/posts', {
+    await fetch('https://traveller-server-ten.vercel.app/posts', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

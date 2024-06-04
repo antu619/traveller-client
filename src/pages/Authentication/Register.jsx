@@ -10,7 +10,7 @@ const Register = () => {
   const [token] = useToken(userEmail);
 
   // Context
-  const { createUser } = useContext(AuthContext);
+  const { user, createUser } = useContext(AuthContext);
 
   // redirect location
   const location = useLocation();
@@ -34,7 +34,7 @@ const Register = () => {
           name: result?.user?.displayName,
           email: result?.user?.email,
         };
-        fetch("http://localhost:5000/user", {
+        fetch("https://traveller-server-ten.vercel.app/user", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -56,10 +56,10 @@ const Register = () => {
   // redirect after login
   
   useEffect( () => {
-    if(token){
+    if(token || user){
       navigate(from, {replace: true})
     }
-  }, [from, navigate, token])
+  }, [from, navigate, token, user])
 
   return (
     <div className="hero my-10">

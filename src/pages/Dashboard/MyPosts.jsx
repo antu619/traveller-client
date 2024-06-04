@@ -9,7 +9,7 @@ const MyPosts = () => {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/my-posts", {
+    fetch("https://traveller-server-ten.vercel.app/my-posts", {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }

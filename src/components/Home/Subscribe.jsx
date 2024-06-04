@@ -10,7 +10,7 @@ const Subscribe = () => {
         const email = form.email.value;
 
          // Upload post api
-    await fetch('http://localhost:5000/subscribers', {
+    await fetch('https://traveller-server-ten.vercel.app/subscribers', {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

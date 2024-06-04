@@ -21,7 +21,7 @@ const UpdateUserInfo = () => {
       photoURL,
     };
 
-    fetch(`http://localhost:5000/users/${data.email}`, {
+    fetch(`https://traveller-server-ten.vercel.app/users/${data.email}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

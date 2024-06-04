@@ -30,7 +30,7 @@ const GoogleLogin = ({setError}) => {
                     name: result?.user?.displayName,
                     email: result?.user?.email
                 }
-                fetch('http://localhost:5000/user', {
+                fetch('https://traveller-server-ten.vercel.app/user', {
                     method: 'POST',
                     headers: {
                         'Content-Type': "application/json"

@@ -6,7 +6,7 @@ const NewPosts = () => {
     const [posts, setPosts] = useState([]);
 
     useEffect( () => {
-        fetch("http://localhost:5000/posts")
+        fetch("https://traveller-server-ten.vercel.app/posts")
         .then(res => res.json())
         .then(data => setPosts(data))
     }, []);

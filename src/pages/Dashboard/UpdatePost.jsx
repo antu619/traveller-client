@@ -28,7 +28,7 @@ const UpdatePost = () => {
     );
 
     if (alert) {
-      await fetch(`http://localhost:5000/posts/${data._id}`, {
+      await fetch(`https://traveller-server-ten.vercel.app/posts/${data._id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

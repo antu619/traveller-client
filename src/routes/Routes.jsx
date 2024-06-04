@@ -35,7 +35,7 @@ const router = createBrowserRouter([
             {
                 path: '/posts/:id',
                 element: <PrivateRoute><PostDetails/></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`, {
+                loader: ({params}) => fetch(`https://traveller-server-ten.vercel.app/posts/${params.id}`, {
                     headers: {
                       authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -88,7 +88,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/update-post/:id',
                 element: <UpdatePost/>,
-                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`, {
+                loader: ({params}) => fetch(`https://traveller-server-ten.vercel.app/posts/${params.id}`, {
                     headers: {
                       authorization: `Bearer ${localStorage.getItem('token')}`
                     }
@@ -97,7 +97,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/profile/update/:id',
                 element: <UpdateUserInfo/>,
-                loader: ({params}) => fetch(`http://localhost:5000/user/profile/${params.id}`, {
+                loader: ({params}) => fetch(`https://traveller-server-ten.vercel.app/user/profile/${params.id}`, {
                     headers: {
                       authorization: `Bearer ${localStorage.getItem('token')}`
                     }
