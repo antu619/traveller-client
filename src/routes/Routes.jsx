@@ -16,6 +16,7 @@ import ErrorPage from "../pages/ErrorPage";
 import About from "../pages/About";
 import Contact from "../pages/Contact";
 import Blogs from "../pages/Blogs";
+import ForgetPass from "../pages/Authentication/ForgetPass";
 
 
 const router = createBrowserRouter([
@@ -59,6 +60,10 @@ const router = createBrowserRouter([
             {
                 path: 'blogs',
                 element: <Blogs/>
+            },
+            {
+                path: 'forget-pass',
+                element: <ForgetPass/>
             },
         ],
         

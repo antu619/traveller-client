@@ -66,7 +66,7 @@ const Register = () => {
       <div className="hero-content flex-col lg:flex-row">
         <div>
           <img
-            className="max-w-xl"
+            className="lg:max-w-xl"
             src="https://i.ibb.co/mvQrm0f/login.jpg"
             alt="Login Image"
           />
@@ -111,11 +111,6 @@ const Register = () => {
                 className="input input-bordered"
                 required
               />
-              <label className="label">
-                <a href="#" className="label-text-alt link link-hover">
-                  Forgot password?
-                </a>
-              </label>
             </div>
             {/* Error message */}
             <p className="text-error">{error}</p>

@@ -2,7 +2,8 @@ import { Helmet } from "react-helmet-async";
 
 const Contact = () => {
   return (
-    <div className="card w-full max-w-lg shadow-2xl bg-base-100 mx-auto my-20">
+    <div className="flex justify-center lg:px-40 md:px-10 px-5 my-20">
+      <div className="card w-full max-w-lg shadow-2xl bg-base-100 ">
       <Helmet>
         <title>Contact - traveLLer</title>
       </Helmet>
@@ -54,6 +55,7 @@ const Contact = () => {
           />
         </div>
       </form>
+    </div>
     </div>
   );
 };

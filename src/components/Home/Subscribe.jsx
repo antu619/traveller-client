@@ -29,10 +29,10 @@ const Subscribe = () => {
         });
     }
     return (
-        <div className="flex justify-between items-center p-3 bg-base-200 my-28 lg:mx-40 md:px-10 px-5 rounded-lg">
+        <div className="flex flex-col lg:flex-row justify-between items-center p-3 bg-base-200 my-28 lg:mx-40 mx-5 md:px-10 px-5 rounded-lg gap-5">
             <p>Get our latest blog posts notification by email.</p>
             <form onSubmit={handleSearch} className="join">
-        <input name="email" type="email" placeholder="email" className="input input-bordered join-item w-96" />
+        <input name="email" type="email" placeholder="email" className="input input-bordered join-item lg:w-96" />
         <input className="btn btn-primary join-item w-28 text-white" type="submit" value="Subscribe" />
       </form>
         </div>

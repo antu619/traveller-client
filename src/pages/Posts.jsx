@@ -30,7 +30,7 @@ const Posts = () => {
 
  
   return (
-    <div className="px-40 my-10">
+    <div className="lg:px-40 md:px-10 px-5 my-10">
       <Helmet>
         <title>Posts - traveLLer</title>
       </Helmet>
@@ -39,7 +39,7 @@ const Posts = () => {
       </h2>
       <div className="flex justify-center my-10">
       <form onSubmit={handleSearch} className="join">
-        <input name="search" type="text" placeholder="Search..." className="input input-bordered join-item w-96" />
+        <input name="search" type="text" placeholder="Search..." className="input input-bordered join-item lg:w-96 md:w-80" />
         <input className="btn btn-primary join-item w-28 text-white" type="submit" value="Search" />
       </form>
       </div>

@@ -40,7 +40,7 @@ const Dashboard = () => {
       <h2 className="text-3xl text-center font-semibold text-secondary mb-10">
         Overview
       </h2>
-      <div className="flex justify-center gap-10">
+      <div className="flex flex-col lg:flex-row justify-center items-center lg:items-start gap-10">
         {/* User Ingo */}
         <div className="flex justify-center mt-10">
           <div>
