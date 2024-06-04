@@ -37,7 +37,8 @@ traveLLer is a responsive travel blogging website built using the MERN stack alo
 - Node.js
 - MongoDB
 - Express.js
-- Setup Instructions
+  
+## Setup Instructions
 - Clone the repository.
 - Navigate to the project directory.
 - Install dependencies using `npm install`.
