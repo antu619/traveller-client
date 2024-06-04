@@ -11,7 +11,7 @@ const NewPosts = () => {
         .then(data => setPosts(data))
     }, []);
     return (
-            <div className="px-40 my-20">
+            <div className="lg:px-40 md:px-10 px-5 my-20">
                 <h2 className="text-3xl text-center font-semibold text-secondary mb-20">
                 Latest Posts
                 </h2>
