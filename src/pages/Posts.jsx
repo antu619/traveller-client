@@ -35,9 +35,12 @@ const Posts = () => {
       </form>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-        {filteredPosts?.map((post) => (
+        {filteredPosts ?
+        filteredPosts?.map((post) => (
           <Card key={post._id} post={post} />
-        ))}
+        )):
+        <p>Your result is not found!</p>
+      }
       </div>
     </div>
   );

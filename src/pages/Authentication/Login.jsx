@@ -80,7 +80,7 @@ const Login = () => {
             </div>
             {/* Error message */}
             <p className="text-error">{error?.message}</p>
-            <div className="form-control mt-6">
+            <div className="form-control mb-3">
               <input
                 className="btn btn-primary text-white"
                 type="submit"

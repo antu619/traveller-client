@@ -10,7 +10,24 @@ const GoogleLogin = ({setError}) => {
 
     const handleGoogleLogin = () => {
         providerLogin(googleProvider)
-        .then(result => console.log(result))
+        .then(result => {
+            console.log(result)
+            if(result?.user?.email){
+                const userInfo = {
+                    name: result?.user?.displayName,
+                    email: result?.user?.email
+                }
+                fetch('http://localhost:5000/user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': "application/json"
+                    },
+                    body: JSON.stringify(userInfo)
+                })
+                .then(res => res.json())
+                .then(data => console.log(data))
+            }
+        })
         .catch(error => {
             console.log(error)
             setError(error)

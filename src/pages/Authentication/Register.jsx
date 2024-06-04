@@ -26,6 +26,19 @@ const Register = () => {
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
+        const userInfo = {
+          name: result?.user?.displayName,
+          email: result?.user?.email
+      }
+      fetch('http://localhost:5000/user', {
+          method: 'POST',
+          headers: {
+              'Content-Type': "application/json"
+          },
+          body: JSON.stringify(userInfo)
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
       })
       .catch((error) => {
         console.log(error.message);
@@ -98,7 +111,7 @@ const Register = () => {
             </div>
             {/* Error message */}
             <p className="text-error">{error}</p>
-            <div className="form-control mt-6">
+            <div className="form-control mb-3">
               <input
                 className="btn btn-primary text-white"
                 type="submit"
