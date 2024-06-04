@@ -33,7 +33,7 @@ const UpdateUserInfo = () => {
             console.log(data);
             Swal.fire({
                 title: "Good job!",
-                text: "Successfully Upload A Post!",
+                text: "Successfully Update User Info!",
                 icon: "success",
               });
         })

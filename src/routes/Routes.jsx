@@ -12,6 +12,7 @@ import UpdatePost from "../pages/Dashboard/UpdatePost";
 import PostDetails from "../pages/PostDetails";
 import Posts from "../pages/Posts";
 import UpdateUserInfo from "../pages/Dashboard/UpdateUserInfo";
+import ErrorPage from "../pages/ErrorPage";
 
 
 const router = createBrowserRouter([
@@ -40,7 +41,9 @@ const router = createBrowserRouter([
                 path: 'register',
                 element: <Register/>
             },
-        ]
+        ],
+        
+        errorElement: <ErrorPage/>
     },
     {
         path: '/dashboard',
@@ -71,5 +74,6 @@ const router = createBrowserRouter([
         ]
     }
 ])
+
 
 export default router;

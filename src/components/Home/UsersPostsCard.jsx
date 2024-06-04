@@ -27,7 +27,7 @@ const UsersPostsCard = () => {
 
     return (
         <ScrollTrigger onEnter={()=>setCounterOn(true)}>
-        <div className="flex flex-col lg:flex-row justify-evenly lg:px-40 md:px-10 px-5 my-20">
+        <div className="flex flex-col lg:flex-row justify-evenly lg:px-40 md:px-10 px-5 my-28">
             {/* Users Card */}
             <div className="card w-96 bg-rose-200 text-black">
   <div className="card-body items-center text-center">
