@@ -39,7 +39,7 @@ const PostCard = ({post, handleRemove}) => {
     </div>
     <div className="card-actions justify-end">
       <button onClick={handleDelete} className="btn btn-sm btn-error text-white"><MdDelete className="text-xl" /></button>
-      <Link to={`dashboard/update-post/${_id}`} className="btn btn-sm btn-secondary text-white"><CiEdit className="text-xl" /></Link>
+      <Link to={`/dashboard/update-post/${_id}`} className="btn btn-sm btn-secondary text-white"><CiEdit className="text-xl" /></Link>
       <Link to={`/posts/${_id}`} className="btn btn-sm btn-primary text-white">Details</Link>
     </div>
   </div>

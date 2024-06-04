@@ -2,11 +2,15 @@ import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import GoogleLogin from "../../components/GoogleLogin";
+import useToken from "../../hooks/useToken";
 
 const Login = () => {
   const [error, setError] = useState();
   // context
-  const { user, logIn } = useContext(AuthContext);
+  const { logIn } = useContext(AuthContext);
+
+  const [loginUser, setLoginUser] = useState('');
+  const [token] = useToken(loginUser);
 
   // Redirect location
   const location = useLocation();
@@ -23,16 +27,20 @@ const Login = () => {
     console.log(email, password);
 
     logIn(email, password)
-      .then((result) => console.log(result))
+      .then((result) => {
+        console.log(result)
+        setLoginUser(result?.user?.email)
+      })
       .catch((error) => setError(error));
   };
 
   // redirect after login
-  useEffect( () => {
-    if(user){
+    useEffect( () => {
+    if(token){
       navigate(from, {replace: true})
     }
-  }, [from, navigate, user])
+  }, [from, navigate, token])
+
 
   return (
     <div className="hero my-10">

@@ -34,7 +34,11 @@ const router = createBrowserRouter([
             {
                 path: '/posts/:id',
                 element: <PrivateRoute><PostDetails/></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`, {
+                    headers: {
+                      authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  })
             },
             {
                 path: 'login',
@@ -69,22 +73,30 @@ const router = createBrowserRouter([
                 element: <Dashboard/>
             },
             {
-                path: 'my-post',
+                path: '/dashboard/my-post',
                 element: <MyPosts/>
             },
             {
-                path: 'upload-post',
+                path: '/dashboard/upload-post',
                 element: <UploadPost/>
             },
             {
-                path: 'update-post/:id',
+                path: '/dashboard/update-post/:id',
                 element: <UpdatePost/>,
-                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`, {
+                    headers: {
+                      authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  })
             },
             {
-                path: 'profile/update/:id',
+                path: '/dashboard/profile/update/:id',
                 element: <UpdateUserInfo/>,
-                loader: ({params}) => fetch(`http://localhost:5000/user/profile/${params.id}`)
+                loader: ({params}) => fetch(`http://localhost:5000/user/profile/${params.id}`, {
+                    headers: {
+                      authorization: `Bearer ${localStorage.getItem('token')}`
+                    }
+                  })
             },
         ]
     }

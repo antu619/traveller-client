@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const UploadPost = () => {
     // Context
@@ -11,7 +12,7 @@ const UploadPost = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.name.value;
-    const location = form.name.value;
+    const location = form.location.value;
     const imgUrl = form.imgUrl.value;
     const description = form.description.value;
 
@@ -23,6 +24,7 @@ const UploadPost = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
       },
       body: JSON.stringify(postData),
     })
@@ -40,6 +42,9 @@ const UploadPost = () => {
 
   return (
     <div className="p-5 md:p-10 lg:p-20">
+      <Helmet>
+        <title>Upload Post - traveLLer</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-semibold text-secondary mb-10">
         Upload A Post
       </h2>

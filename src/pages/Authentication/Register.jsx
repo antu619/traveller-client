@@ -1,12 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import useToken from "../../hooks/useToken";
 
 const Register = () => {
   const [error, setError] = useState();
 
+  const [userEmail, setUserEmail] = useState("");
+  const [token] = useToken(userEmail);
+
   // Context
-  const { user, createUser } = useContext(AuthContext);
+  const { createUser } = useContext(AuthContext);
 
   // redirect location
   const location = useLocation();
@@ -28,17 +32,20 @@ const Register = () => {
         console.log(result.user);
         const userInfo = {
           name: result?.user?.displayName,
-          email: result?.user?.email
-      }
-      fetch('http://localhost:5000/user', {
-          method: 'POST',
+          email: result?.user?.email,
+        };
+        fetch("http://localhost:5000/user", {
+          method: "POST",
           headers: {
-              'Content-Type': "application/json"
+            "Content-Type": "application/json",
           },
-          body: JSON.stringify(userInfo)
-      })
-      .then(res => res.json())
-      .then(data => console.log(data))
+          body: JSON.stringify(userInfo),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            setUserEmail(email);
+          });
       })
       .catch((error) => {
         console.log(error.message);
@@ -47,11 +54,12 @@ const Register = () => {
   };
 
   // redirect after login
+  
   useEffect( () => {
-    if(user){
+    if(token){
       navigate(from, {replace: true})
     }
-  }, [from, navigate, user])
+  }, [from, navigate, token])
 
   return (
     <div className="hero my-10">

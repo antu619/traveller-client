@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Home/Card";
+import { Helmet } from "react-helmet-async";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/posts")
+    fetch("http://localhost:5000/posts", {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setPosts(data));
   }, []);
@@ -22,9 +27,13 @@ const Posts = () => {
 
   console.log(filteredPosts)
 
+
  
   return (
     <div className="px-40 my-10">
+      <Helmet>
+        <title>Posts - traveLLer</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-semibold text-secondary">
         Latest Posts
       </h2>

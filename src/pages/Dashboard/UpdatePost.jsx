@@ -2,9 +2,11 @@ import { useContext } from "react";
 import { AuthContext } from "../../providers/AuthProvider";
 import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const UpdatePost = () => {
   const data = useLoaderData();
+
 
   // Context
   const { user } = useContext(AuthContext);
@@ -29,7 +31,8 @@ const UpdatePost = () => {
       await fetch(`http://localhost:5000/posts/${data._id}`, {
         method: "PATCH",
         headers: {
-          "Content-Type": "Application/json",
+          "Content-Type": "application/json",
+          authorization: `Bearer ${localStorage.getItem('token')}`
         },
         body: JSON.stringify(postData),
       })
@@ -46,6 +49,9 @@ const UpdatePost = () => {
   };
   return (
     <div className="p-5 md:p-10 lg:p-20">
+      <Helmet>
+        <title>Update Post - traveLLer</title>
+      </Helmet>
       <h2 className="text-3xl text-center font-semibold text-secondary mb-10">
         Upload A Post
       </h2>
