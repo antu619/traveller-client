@@ -31,7 +31,7 @@ const Posts = () => {
       <div className="flex justify-center my-10">
       <form onSubmit={handleSearch} className="join">
         <input name="search" type="text" placeholder="Search..." className="input input-bordered join-item w-96" />
-        <input className="btn btn-primary join-item w-28 text-white" type="submit" value="Submit" />
+        <input className="btn btn-primary join-item w-28 text-white" type="submit" value="Search" />
       </form>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">

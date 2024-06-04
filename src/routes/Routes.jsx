@@ -13,6 +13,9 @@ import PostDetails from "../pages/PostDetails";
 import Posts from "../pages/Posts";
 import UpdateUserInfo from "../pages/Dashboard/UpdateUserInfo";
 import ErrorPage from "../pages/ErrorPage";
+import About from "../pages/About";
+import Contact from "../pages/Contact";
+import Blogs from "../pages/Blogs";
 
 
 const router = createBrowserRouter([
@@ -40,6 +43,18 @@ const router = createBrowserRouter([
             {
                 path: 'register',
                 element: <Register/>
+            },
+            {
+                path: 'about',
+                element: <About/>
+            },
+            {
+                path: 'contact',
+                element: <Contact/>
+            },
+            {
+                path: 'blogs',
+                element: <Blogs/>
             },
         ],
         
