@@ -56,7 +56,7 @@ const Register = () => {
   // redirect after login
   
   useEffect( () => {
-    if(token || user){
+    if(token){
       navigate(from, {replace: true})
     }
   }, [from, navigate, token, user])
