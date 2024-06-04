@@ -13,9 +13,10 @@ const DashboardLayout = () => {
   </div> 
   <div className="drawer-side">
     <label htmlFor="my-drawer-2" aria-label="close sidebar" className="drawer-overlay"></label> 
-    <ul className="menu p-4 w-80 min-h-full bg-[#F7EEDD] text-base-content">
+    <ul className="menu p-4 w-80 min-h-full bg-[#F7EEDD] text-base-content gap-1">
       
       <li><Link to={'/'}>Back To Home</Link></li>
+      <li><Link to={'/dashboard'}>Dashboard Overview</Link></li>
       <li><Link to={'/dashboard/my-post'}>My Posts</Link></li>
       <li><Link to={'/dashboard/upload-post'}>Upload A Post</Link></li>
     </ul>

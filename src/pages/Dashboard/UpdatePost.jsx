@@ -14,7 +14,7 @@ const UpdatePost = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
-    const title = form.name.value;
+    const title = form.title.value;
     const location = form.location.value;
     const imgUrl = form.imgUrl.value;
     const description = form.description.value;
@@ -54,7 +54,7 @@ const UpdatePost = () => {
           <div className="form-control mb-2">
             <label className="input input-bordered flex items-center gap-2">
               Title:
-              <input type="text" name="name" className="grow" required defaultValue={data?.title} />
+              <input type="text" name="title" className="grow" required defaultValue={data?.title} />
             </label>
           </div>
           <div className="form-control mb-2">
@@ -85,7 +85,7 @@ const UpdatePost = () => {
             <input
               className="btn btn-primary text-white"
               type="submit"
-              value="Submit"
+              value="Update"
             />
           </div>
         </form>

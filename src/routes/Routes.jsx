@@ -11,6 +11,7 @@ import MyPosts from "../pages/Dashboard/MyPosts";
 import UpdatePost from "../pages/Dashboard/UpdatePost";
 import PostDetails from "../pages/PostDetails";
 import Posts from "../pages/Posts";
+import UpdateUserInfo from "../pages/Dashboard/UpdateUserInfo";
 
 
 const router = createBrowserRouter([
@@ -61,6 +62,11 @@ const router = createBrowserRouter([
                 path: 'update-post/:id',
                 element: <UpdatePost/>,
                 loader: ({params}) => fetch(`http://localhost:5000/posts/${params.id}`)
+            },
+            {
+                path: 'profile/update/:id',
+                element: <UpdateUserInfo/>,
+                loader: ({params}) => fetch(`http://localhost:5000/user/profile/${params.id}`)
             },
         ]
     }
