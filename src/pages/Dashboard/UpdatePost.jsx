@@ -17,6 +17,7 @@ const UpdatePost = () => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
+    console.log(form.location.value)
     const location = form.location.value;
     const imgUrl = form.imgUrl.value;
     const description = form.description.value;
