@@ -13,7 +13,10 @@ const PostCard = ({post, handleRemove}) => {
       const alert = window.confirm(`Are you sure! You Want To Delete "${title}"`);
       if(alert){
         await fetch(`https://traveller-server-ten.vercel.app/posts/${_id}`, {
-            method: "DELETE"
+            method: "DELETE",
+            headers: {
+              authorization: `Bearer ${localStorage.getItem('token')}`
+            }
         })
         .then(res => res.json())
         .then(data => {

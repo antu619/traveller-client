@@ -4,9 +4,9 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Helmet } from "react-helmet-async";
 
 const UploadPost = () => {
-    // Context
-    const {user} = useContext(AuthContext);
-    const email = user.email;
+  // Context
+  const { user, logOut } = useContext(AuthContext);
+  const email = user.email;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -16,27 +16,34 @@ const UploadPost = () => {
     const imgUrl = form.imgUrl.value;
     const description = form.description.value;
 
-    const postData = { title, location, imgUrl, description, email};
+    const postData = { title, location, imgUrl, description, email };
     console.log(postData);
 
     // Upload post api
-    await fetch('https://traveller-server-ten.vercel.app/posts', {
+    await fetch("https://traveller-server-ten.vercel.app/posts", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: `Bearer ${localStorage.getItem('token')}`
+        authorization: `Bearer ${localStorage.getItem("token")}`,
       },
       body: JSON.stringify(postData),
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        Swal.fire({
-          title: "Good job!",
-          text: "Successfully Upload A Post!",
-          icon: "success",
-        });
-        form.reset();
+        if (data?.message == "forbidden access") {
+          logOut()
+            .then(() => {})
+            .catch((error) => console.log(error));
+        }
+        else{
+          Swal.fire({
+            title: "Good job!",
+            text: "Successfully Upload A Post!",
+            icon: "success",
+          });
+          form.reset();
+
+        }
       });
   };
 

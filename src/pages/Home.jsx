@@ -4,7 +4,8 @@ import EssentialItems from "../components/Home/EssentialItems";
 import NewPosts from "../components/Home/NewPosts";
 import PopularDestinations from "../components/Home/PopularDestinations";
 import Subscribe from "../components/Home/Subscribe";
-import UsersPostsCard from "../components/Home/UsersPostsCard";
+import FreqQuestions from "../components/Home/FreqQuestions";
+// import UsersPostsCard from "../components/Home/UsersPostsCard";
 
 const Home = () => {
   return (
@@ -16,7 +17,7 @@ const Home = () => {
       <NewPosts />
       <PopularDestinations />
       <EssentialItems />
-      <UsersPostsCard />
+      <FreqQuestions />
       <Subscribe />
     </div>
   );

@@ -1,7 +1,7 @@
 const EssentialItems = () => {
   return (
-    <div className="lg:px-40 md:px-10 px-5 my-20">
-      <h2 className="text-3xl text-center font-semibold text-secondary mb-20">Travel Essentials</h2>
+    <div className="lg:px-40 md:px-10 px-5">
+      <h2 className="text-3xl text-center font-semibold text-secondary my-10 lg:my-28">Travel Essentials</h2>
       <div className="flex flex-wrap justify-center gap-5">
         {/* Item 1 */}
         <div className="card bg-base-100 shadow-xl image-full">

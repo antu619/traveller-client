@@ -1,22 +1,30 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Home/Card";
 import { Helmet } from "react-helmet-async";
+import Loading from "../components/Loading";
 
 const Posts = () => {
   const [posts, setPosts] = useState([]);
   const [searchPosts, setSearchPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch("https://traveller-server-ten.vercel.app/posts", {
       headers: {
         authorization: `Bearer ${localStorage.getItem('token')}`
       }
     })
       .then((res) => res.json())
-      .then((data) => setPosts(data));
+      .then((data) => {
+        setPosts(data)
+        setLoading(false);
+      });
   }, []);
 
-
+  if(loading){
+    return <Loading />;
+}
   const handleSearch = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -44,13 +52,17 @@ const Posts = () => {
       </form>
       </div>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-        {filteredPosts ?
+        {
         filteredPosts?.map((post) => (
           <Card key={post._id} post={post} />
-        )):
-        <p>Your result is not found!</p>
+        ))
       }
       </div>
+      {
+        filteredPosts == 0  &&
+          <p className="text-center my-28">Your result is not found!</p>
+
+      }
     </div>
   );
 };

@@ -7,7 +7,7 @@ import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, PieChart, Pie, Legend
 const colors = ['#0088FE', '#00C49F', '#FFBB28'];
 
 const Dashboard = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const [dbUser, setDbUserInfo] = useState();
   const [posts, setPosts] = useState([]);
@@ -23,14 +23,29 @@ const Dashboard = () => {
 
   // all users
   useEffect(() => {
-    fetch("https://traveller-server-ten.vercel.app/users")
+    fetch("https://traveller-server-ten.vercel.app/users", {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
-      .then((data) => setAllUsers(data));
-  }, []);
+      .then((data) => {
+        if (data?.message == "forbidden access") {
+          logOut()
+            .then(() => {})
+            .catch((error) => console.log(error));
+        }
+        setAllUsers(data)
+      });
+  }, [logOut]);
 
   // all subscribers
   useEffect(() => {
-    fetch("https://traveller-server-ten.vercel.app/subscribers")
+    fetch("https://traveller-server-ten.vercel.app/subscribers", {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      }
+    })
       .then((res) => res.json())
       .then((data) => setSubscribers(data));
   }, []);
@@ -96,6 +111,7 @@ const renderCustomizedLabel = ({ cx, cy, midAngle, innerRadius, outerRadius, per
     </text>
   );
 };
+
   return (
     <div className="p-5 md:p-10 lg:p-20">
       <Helmet>
